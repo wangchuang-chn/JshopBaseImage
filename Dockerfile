@@ -14,10 +14,12 @@ RUN  yum install yum-utils \
     && yum-config-manager --enable remi-php73 \
     && yum -y install php  php-mysqlnd php-devel php-pear  php-pdo  php-fpm git php-mbstring php-gd php-pecl-zip \
     && sed -i 's@memory_limit.*@memory_limit = 2048M@g' /etc/php.ini \
+    && sed -i 's@apache@nginx@g' /etc/php-fpm.d/www.conf \
     && mkdir /run/php-fpm \
     && curl -sS https://getcomposer.org/installer | /usr/bin/php -- --install-dir=/usr/local/bin --filename=composer \
     && yum clean all 
 
 COPY start.sh /start.sh
+COPY default.conf /etc/nginx/conf.d/default.conf
 
 CMD ["/bin/sh", "/start.sh"]
