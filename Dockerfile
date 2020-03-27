@@ -12,7 +12,7 @@ RUN  yum install yum-utils \
     && yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
     && yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
     && yum-config-manager --enable remi-php73 \
-    && yum -y install php  php-mysqlnd php-devel php-pear  php-pdo  php-fpm git php-mbstring\
+    && yum -y install php  php-mysqlnd php-devel php-pear  php-pdo  php-fpm git php-mbstring php-gd\
     && mkdir /run/php-fpm \
     && curl -sS https://getcomposer.org/installer | /usr/bin/php -- --install-dir=/usr/local/bin --filename=composer \
     && yum clean all 
